@@ -1,21 +1,16 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const apiRoutes = require("./app/routes/routes");
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:3000",
-};
-
-app.use(cors(corsOptions));
+app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./app/models");
-db.sequelize
+const Libro = require("./app/models/libro");
+Libro.sequelize
   .sync()
   .then(() => {
     console.log("DB conectada");

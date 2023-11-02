@@ -1,9 +1,8 @@
 const { faker } = require("@faker-js/faker");
-const db = require("./app/models");
-const Libro = db.libros;
+const Libro = require("./app/models/libro");
 
 async function seedDatabase() {
-  await db.sequelize.sync({ force: true });
+  await Libro.sequelize.sync({ force: true });
 
   const books = [];
   const seededBooks = 1000;

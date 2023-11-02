@@ -1,5 +1,4 @@
-const db = require("../app/models");
-const Libro = db.libros;
+const Libro = require('../app/models/libro');
 
 const createBook = (cliData) => {
   const libro = cliData;

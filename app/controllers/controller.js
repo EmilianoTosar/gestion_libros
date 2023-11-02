@@ -1,5 +1,4 @@
-const db = require("../models");
-const Libro = db.libros;
+const Libro = require("../models/libro");
 
 const createBook = (req, res) => {
   const libro = {
