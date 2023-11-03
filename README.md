@@ -16,7 +16,7 @@ API REST HTTP CRUD - Backend de gestion de libros (http + cli)
 
 ```bash
 git clone https://github.com/EmilianoTosar/gestion_libros.git
-cd GestionLibros
+cd gestion_libros
 npm install
 npm start
 ```
