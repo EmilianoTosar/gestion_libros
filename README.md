@@ -20,8 +20,12 @@ cd GestionLibros
 npm install
 npm start
 ```
+----
+
 En el archivo app/config/db.config van cargados los datos de configuracion de la base de datos de Postgres a la que se desee conectar.
----
+
+----
+
 Para popular la base de datos:
 ```bash
 node seeds.js
