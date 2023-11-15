@@ -6,8 +6,7 @@ const {
 	findAllBooks,
 	updateBook,
 	deleteBook,
-	deleteAllBooks,
-} = require('../controllers/controller.js');
+} = require('../controllers/controllers.js');
 
 router.post('/', createBook);
 
@@ -15,10 +14,8 @@ router.get('/', findAllBooks);
 
 router.get('/:id', findBookById);
 
-router.put('/:id', updateBook);
+router.patch('/:id', updateBook);
 
 router.delete('/:id', deleteBook);
-
-router.delete('/', deleteAllBooks);
 
 module.exports = router;

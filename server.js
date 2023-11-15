@@ -20,7 +20,7 @@ Libro.sequelize
 	});
 
 app.get('/', (req, res) => {
-	res.json({ message: 'Requests /api/libros' });
+	res.json({ message: 'Requests => /api/libros' });
 });
 
 app.use('/api/libros', apiRoutes);

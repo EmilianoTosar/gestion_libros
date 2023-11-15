@@ -20,7 +20,7 @@ const createBook = cliData => {
 
 	Libro.create(libro)
 		.then(data => {
-			console.log('Libro agregado con éxito:', data);
+			console.log('Libro agregado con éxito:', data.dataValues);
 			process.exit(0);
 		})
 		.catch(err => {
@@ -32,8 +32,10 @@ const createBook = cliData => {
 const findAllBooks = () => {
 	Libro.findAll()
 		.then(data => {
-			console.log('Todos los libros:', data);
-			process.exit(0);
+			console.log('Todos los libros:');
+			for (const libro of data) {
+				console.log(libro.dataValues);
+			}
 		})
 		.catch(err => {
 			console.error('Error trayendo los libros:', err.message);
@@ -45,7 +47,7 @@ const findBookById = id => {
 	Libro.findByPk(id)
 		.then(data => {
 			if (data) {
-				console.log(`Libro con id nro ${id}:`, data);
+				console.log(`Libro con id nro ${id}:`, data.dataValues);
 				process.exit(0);
 			} else {
 				console.error(`No se encontro libro con id: ${id}`);
@@ -59,22 +61,23 @@ const findBookById = id => {
 };
 
 const updateBook = (body, id) => {
+	const { title } = body;
 	Libro.update(body, {
 		where: { id: id },
 	})
 		.then(([num]) => {
 			if (num >= 1) {
-				console.log('Libro actualizado!');
+				console.log(`Libro ${title} actualizado!`, );
 				process.exit(0);
 			} else {
 				console.error(
-					`No se pudo actualizar el libro ${body.title}, ocurrió un error!`
+					`No se pudo actualizar el libro ${title}, ocurrió un error!`
 				);
 				process.exit(1);
 			}
 		})
 		.catch(err => {
-			console.error(`Error actualizando libro ${body.title}`, err);
+			console.error(`Error actualizando libro ${title}`, err);
 			process.exit(1);
 		});
 };

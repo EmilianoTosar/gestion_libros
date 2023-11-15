@@ -12,23 +12,47 @@ const Libro = sequelize.define('libro', {
 	isbn: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		validate: {
+			notNull: {
+				msg: 'isbn no puede ser nulo',
+			},
+		},
 	},
 	title: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		validate: {
+			notNull: {
+				msg: 'Título no puede ser nulo',
+			},
+		},
 	},
 	author: {
 		type: DataTypes.STRING,
 		allowNull: false,
+		validate: {
+			notNull: {
+				msg: 'Autor no puede ser nulo',
+			},
+		},
 	},
 	price: {
 		type: DataTypes.DECIMAL(10, 2),
 		allowNull: false,
+		validate: {
+			notNull: {
+				msg: 'Precio no puede ser nulo',
+			},
+			
+		},
 	},
 	publicationDate: {
 		type: DataTypes.DATEONLY,
 		allowNull: false,
 		validate: {
+			notNull: {
+				msg: 'Fecha no puede ser nula',
+			},
 			isDate: {
 				args: true,
 				msg: 'El formato de fecha no es válido. Debe estar en el formato "aaaa-mm-dd".',
@@ -53,6 +77,9 @@ const Libro = sequelize.define('libro', {
 		),
 		allowNull: false,
 		validate: {
+			notNull: {
+				msg: 'Género no puede ser nulo',
+			},
 			isIn: {
 				args: [
 					[

@@ -5,8 +5,7 @@ const {
 	findAllBooks,
 	findBookById,
 	deleteBook,
-	deleteAllBooks,
-} = require('./controllers');
+} = require('../app/controllers/controllers');
 
 yargs.command({
 	command: 'create',
@@ -66,15 +65,27 @@ yargs.command({
 			publicationDate: argv.publicationDate,
 			genre: argv.genre,
 		};
-		createBook(data);
+		createBook(null, null, data);
 	},
 });
 
 yargs.command({
 	command: 'findAll',
 	describe: 'Ver todos los libros',
+	buider: {
+		page: {
+			describe: 'Pagina',
+			demandOption: false,
+			type: 'number',
+		},
+		limit: {
+			describe: 'Libros por pagina',
+			demandOption: false,
+			type: 'number',
+		},
+	},
 	handler: argv => {
-		findAllBooks(argv);
+		findAllBooks(null, null, argv);
 	},
 });
 
@@ -88,9 +99,8 @@ yargs.command({
 			type: 'number',
 		},
 	},
-
 	handler: argv => {
-		findBookById(argv.id);
+		findBookById(null, null, argv.id);
 	},
 });
 
@@ -144,6 +154,7 @@ yargs.command({
 	},
 	handler: argv => {
 		const data = {
+			id: argv.id,
 			isbn: argv.isbn,
 			title: argv.title,
 			author: argv.author,
@@ -151,7 +162,7 @@ yargs.command({
 			publicationDate: argv.publicationDate,
 			genre: argv.genre,
 		};
-		updateBook(data, argv.id);
+		updateBook(null, null, data);
 	},
 });
 
@@ -167,16 +178,16 @@ yargs.command({
 	},
 
 	handler: argv => {
-		deleteBook(argv.id);
+		deleteBook(null, null, argv.id);
 	},
 });
 
-yargs.command({
+/* yargs.command({
 	command: 'deleteAll',
 	describe: 'Borrar todos los libros',
 	handler: argv => {
 		deleteAllBooks(argv);
 	},
-});
+}); */
 
 yargs.parse();
